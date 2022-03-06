@@ -1,0 +1,31 @@
+﻿<Page
+    x:Class="ThisProjectWontContainAnyDogsForSure.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ThisProjectWontContainAnyDogsForSure"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="930" Width="1070">
+
+    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="550" Height="733">
+        <Grid.Background>
+            <ImageBrush ImageSource="/Assets/dogo.jpg"/>
+        </Grid.Background>
+        <ComboBox Name="ModeSelectionComboBox" Margin="20,11,0,0" Width="160" SelectionChanged="ModeSelectionComboBox_SelectionChanged"></ComboBox>
+        <Button Name="MasterBtn" Margin="185,10,0,0" VerticalAlignment="Top" Click="MasterBtn_Click">
+            <StackPanel Orientation="Horizontal">
+                <SymbolIcon Symbol="Accept" x:Name="MasterBtnIcon"></SymbolIcon>
+                <TextBlock x:Name="MasterBtnTextBlock" Text="Button" Margin="10,0,0,0"></TextBlock>
+            </StackPanel>
+        </Button>
+        <TextBlock Text="First input" Foreground="{StaticResource AppBarBorderThemeBrush}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,55,0,0"/>
+        <TextBlock Text="Second input" Foreground="{StaticResource AppBarBorderThemeBrush}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,85,0,0"/>
+
+        <TextBox Name="FirstInput"  Style="{StaticResource AutoSuggestBoxTextBoxStyle}" BeforeTextChanging="TextBox_OnBeforeTextChanging" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="131,48,0,0" Width="200"></TextBox>
+        <TextBox Name="SecondInput" Style="{StaticResource AutoSuggestBoxTextBoxStyle}" BeforeTextChanging="TextBox_OnBeforeTextChanging" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="131,78,0,0" Width="200"></TextBox>
+
+        <controls:DataGrid Name="OutputDataGrid" Background="{StaticResource SystemControlBackgroundAltMediumLowBrush }" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Margin="20,0,20,20" Height="400"/>
+    </Grid>
+</Page>
