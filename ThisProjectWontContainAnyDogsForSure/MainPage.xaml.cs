@@ -29,7 +29,10 @@ namespace ThisProjectWontContainAnyDogsForSure
             Dictionary<string, int> GetPrimeType = new Dictionary<string, int>
             {
                 { "Sequential", 0 },
-                { "Parallel", 1 }
+                { "Parallel", 1 },
+                                { "ParallelAsync", 2 },
+                { "ParallelAsyncAwait", 3 }
+
             };
 
             ModeSelectionComboBox.ItemsSource = GetPrimeType;
@@ -85,6 +88,30 @@ namespace ThisProjectWontContainAnyDogsForSure
             return true;
         }
         
+        private async Task<List<long>> GetPrimesParallelAsync(long first, long last)
+        {
+            List<long> SortedPrimes = new List<long>();
+            for (long i = first; i < last; i++)
+            {
+                bool isPrime = false;
+                isPrime = IsPrime(i);
+                if (isPrime) SortedPrimes.Add(i);
+            }
+            return SortedPrimes;
+        }
+
+        private async Task<List<long>> GetPrimesParallelAsyncAwait(long first, long last)
+        {
+            List<long> SortedPrimes = new List<long>();
+            for (long i = first; i < last; i++)
+            {
+                bool isPrime = false;
+                isPrime = IsPrime(i);
+                if (isPrime) SortedPrimes.Add(i);
+            }
+            await Task.CompletedTask;
+            return SortedPrimes;
+        }
 
         private void MasterBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -95,6 +122,12 @@ namespace ThisProjectWontContainAnyDogsForSure
                     break;
                 case 1:
                     OutputDataGrid.ItemsSource = GetPrimesParallel(long.Parse(FirstInput.Text), long.Parse(SecondInput.Text));
+                    break;
+                case 2:
+                    OutputDataGrid.ItemsSource = GetPrimesParallelAsync(long.Parse(FirstInput.Text), long.Parse(SecondInput.Text)).Result;
+                    break;
+                case 3:
+                    OutputDataGrid.ItemsSource = GetPrimesParallelAsyncAwait(long.Parse(FirstInput.Text), long.Parse(SecondInput.Text)).Result;
                     break;
                 default:
                     break;
