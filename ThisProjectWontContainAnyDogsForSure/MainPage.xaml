@@ -14,18 +14,30 @@
             <ImageBrush ImageSource="/Assets/dogo.jpg"/>
         </Grid.Background>
         <ComboBox Name="ModeSelectionComboBox" Margin="20,11,0,0" Width="160" SelectionChanged="ModeSelectionComboBox_SelectionChanged"></ComboBox>
-        <Button Name="MasterBtn" Margin="185,10,0,0" VerticalAlignment="Top" Click="MasterBtn_Click">
+        <Button Name="MasterBtn" Style="{StaticResource AccentButtonStyle}" Margin="185,10,0,0" VerticalAlignment="Top" Click="MasterBtn_Click">
             <StackPanel Orientation="Horizontal">
                 <SymbolIcon Symbol="Accept" x:Name="MasterBtnIcon"></SymbolIcon>
                 <TextBlock x:Name="MasterBtnTextBlock" Text="Button" Margin="10,0,0,0"></TextBlock>
+                <ProgressRing Name="MasterBtnProgress" VerticalAlignment="Top" Margin="0,2,0,0" Foreground="#FFD70000" ></ProgressRing>
+
+            </StackPanel>
+        </Button>
+        <Button Name="MasterBtnAsync" Style="{StaticResource AccentButtonStyle}" Margin="302,11,0,0" VerticalAlignment="Top" Click="MasterBtnAsync_Click">
+            <StackPanel Orientation="Horizontal">
+                <SymbolIcon Symbol="Accept" x:Name="MasterBtnAsyncIcon"></SymbolIcon>
+                <TextBlock x:Name="MasterBtnAsyncTextBlock" Text="AsyncBtn" Margin="10,0,0,0"></TextBlock>
+                <ProgressRing Name="MasterBtnAsyncProgress" VerticalAlignment="Top" Margin="0,2,0,0" Foreground="#FFD70000" ></ProgressRing>
+
             </StackPanel>
         </Button>
         <TextBlock Text="First input" Foreground="{StaticResource AppBarBorderThemeBrush}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,55,0,0"/>
         <TextBlock Text="Second input" Foreground="{StaticResource AppBarBorderThemeBrush}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,85,0,0"/>
 
-        <TextBox Name="FirstInput"  Style="{StaticResource AutoSuggestBoxTextBoxStyle}" BeforeTextChanging="TextBox_OnBeforeTextChanging" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="131,48,0,0" Width="200"></TextBox>
-        <TextBox Name="SecondInput" Style="{StaticResource AutoSuggestBoxTextBoxStyle}" BeforeTextChanging="TextBox_OnBeforeTextChanging" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="131,78,0,0" Width="200"></TextBox>
-
+        <TextBox Name="FirstInput"  Style="{StaticResource AutoSuggestBoxTextBoxStyle}" Text="{x:Bind FirstInputText, UpdateSourceTrigger=LostFocus, Mode=TwoWay}" BeforeTextChanging="TextBox_OnBeforeTextChanging" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="131,48,0,0" Width="200"></TextBox>
+        <TextBox Name="SecondInput" Style="{StaticResource AutoSuggestBoxTextBoxStyle}" Text="{x:Bind SecondInputText, UpdateSourceTrigger=LostFocus, Mode=TwoWay}" BeforeTextChanging="TextBox_OnBeforeTextChanging" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="131,78,0,0" Width="200"></TextBox>
+        <TextBlock Name="TimeOutput" Text="{x:Bind TimerText, UpdateSourceTrigger=LostFocus, Mode=TwoWay}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,289,0,0" Foreground="Red"/>
         <controls:DataGrid Name="OutputDataGrid" Background="{StaticResource SystemControlBackgroundAltMediumLowBrush }" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Margin="20,0,20,20" Height="400"/>
+        <ProgressBar x:Name="MainProgressBar" Maximum="{x:Bind MaximumProgress, UpdateSourceTrigger=LostFocus, Mode=TwoWay}" Value="{x:Bind ValueProgress, UpdateSourceTrigger=LostFocus, Mode=TwoWay}" VerticalAlignment="Top" Margin="0,115,0,0" Foreground="#FFD70000" Height="10" ></ProgressBar>
+
     </Grid>
 </Page>
