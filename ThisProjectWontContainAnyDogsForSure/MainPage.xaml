@@ -26,8 +26,14 @@
             <StackPanel Orientation="Horizontal">
                 <SymbolIcon Symbol="Accept" x:Name="MasterBtnAsyncIcon"></SymbolIcon>
                 <TextBlock x:Name="MasterBtnAsyncTextBlock" Text="AsyncBtn" Margin="10,0,0,0"></TextBlock>
-                <ProgressRing Name="MasterBtnAsyncProgress" VerticalAlignment="Top" Margin="0,2,0,0" Foreground="#FFD70000" ></ProgressRing>
+                <ProgressRing Name="MasterBtnAsyncProgress" VerticalAlignment="Top" Margin="0,2,0,0"  ></ProgressRing>
 
+            </StackPanel>
+        </Button>
+        <Button Name="CancelBtn" Style="{StaticResource AccentButtonStyle}" Background="Red" Margin="439,13,0,0" VerticalAlignment="Top" Click="CancelBtn_Click">
+            <StackPanel Orientation="Horizontal">
+                <SymbolIcon Symbol="Cancel" x:Name="CancelBtxIcon"></SymbolIcon>
+                <TextBlock x:Name="CancelBtnTextBloock" Text="Cancel" Margin="10,0,0,0"></TextBlock>
             </StackPanel>
         </Button>
         <TextBlock Text="First input" Foreground="{StaticResource AppBarBorderThemeBrush}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,55,0,0"/>
@@ -35,9 +41,12 @@
 
         <TextBox Name="FirstInput"  Style="{StaticResource AutoSuggestBoxTextBoxStyle}" Text="{x:Bind FirstInputText, UpdateSourceTrigger=LostFocus, Mode=TwoWay}" BeforeTextChanging="TextBox_OnBeforeTextChanging" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="131,48,0,0" Width="200"></TextBox>
         <TextBox Name="SecondInput" Style="{StaticResource AutoSuggestBoxTextBoxStyle}" Text="{x:Bind SecondInputText, UpdateSourceTrigger=LostFocus, Mode=TwoWay}" BeforeTextChanging="TextBox_OnBeforeTextChanging" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="131,78,0,0" Width="200"></TextBox>
-        <TextBlock Name="TimeOutput" Text="{x:Bind TimerText, UpdateSourceTrigger=LostFocus, Mode=TwoWay}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,289,0,0" Foreground="Red"/>
+
+        <Border HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,289,0,0" Background="{StaticResource SystemControlBackgroundAltMediumLowBrush}">
+        <TextBlock Name="TimeOutput" Style="{StaticResource FlyoutPickerTitleTextBlockStyle}" Text="{x:Bind TimerText, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+        </Border>
         <controls:DataGrid Name="OutputDataGrid" Background="{StaticResource SystemControlBackgroundAltMediumLowBrush }" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Margin="20,0,20,20" Height="400"/>
-        <ProgressBar x:Name="MainProgressBar" Maximum="{x:Bind MaximumProgress, UpdateSourceTrigger=LostFocus, Mode=TwoWay}" Value="{x:Bind ValueProgress, UpdateSourceTrigger=LostFocus, Mode=TwoWay}" VerticalAlignment="Top" Margin="0,115,0,0" Foreground="#FFD70000" Height="10" ></ProgressBar>
+        <ProgressBar x:Name="MainProgressBar" Maximum="{x:Bind MaximumProgress, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Value="{x:Bind ValueProgress, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" VerticalAlignment="Top" Margin="0,115,0,0" Height="10" ></ProgressBar>
 
     </Grid>
 </Page>
